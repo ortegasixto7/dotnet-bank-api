@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+NetBank/.vs
+NetBank/NetBank.Api/obj
+NetBank/NetBank.Api/bin
