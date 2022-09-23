@@ -27,7 +27,7 @@ namespace NetBank.Persistence.MongoDb.Currency
         public async Task<Core.Currency.Currency> GetActiveByCodeOrExceptionAsync(string code)
         {
             var result = await collection.Find(x => x.IsActive == true).FirstOrDefaultAsync();
-            if (result == null) throw new Exception(CustomException.CurrencyNotFound);
+            if (result == null) throw new Exception(CustomExceptionCodes.CurrencyNotFound);
             return result;
         }
 
@@ -44,7 +44,7 @@ namespace NetBank.Persistence.MongoDb.Currency
         public async Task<Core.Currency.Currency> GetByCodeOrExceptionAsync(string code)
         {
             var result = await collection.Find(x => x.Code == code).FirstOrDefaultAsync();
-            if (result == null) throw new Exception(CustomException.CurrencyNotFound);
+            if (result == null) throw new Exception(CustomExceptionCodes.CurrencyNotFound);
             return result;
         }
 
