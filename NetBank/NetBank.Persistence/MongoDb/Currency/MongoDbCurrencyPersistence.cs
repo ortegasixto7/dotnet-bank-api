@@ -15,11 +15,10 @@ namespace NetBank.Persistence.MongoDb.Currency
 
         public MongoDbCurrencyPersistence()
         {
-            var mongoClient = new MongoClient(Environment.GetEnvironmentVariable("MONGODB_CONNECTION_URL"));
-            var mongoDatabase = mongoClient.GetDatabase(Environment.GetEnvironmentVariable("MONGODB_DATABASE_NAME"));
+            var mongoDatabase = MongoDbClient.GetInstance();
             collection = mongoDatabase.GetCollection<Core.Currency.Currency>("currencies");
         }
-
+            
         public async Task CreateAsync(Core.Currency.Currency data)
         {
             await collection.InsertOneAsync(data);
