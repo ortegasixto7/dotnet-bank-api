@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NetBank.Core.Validation
 {
-    public abstract class CustomException
+    public class BadRequestException : Exception
     {
-        public static readonly string CurrencyNotFound = "CURRENCY_NOT_FOUND";
+        public BadRequestException(string message) : base(message) { }
     }
 }
