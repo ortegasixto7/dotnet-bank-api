@@ -8,12 +8,12 @@ namespace NetBank.Core.Currency
 {
     public interface ICurrencyPersistence
     {
-        void Create(Currency data);
-        void Update(Currency data);
-        Currency? GetByCodeOrNull(string code);
-        Currency GetByCodeOrException(string code);
-        Currency GetActiveByCodeOrException(string code);
-        IEnumerable<Currency> GetAllActive();
-        IEnumerable<Currency> GetAllInactive();
+        Task CreateAsync(Currency data);
+        Task UpdateAsync(Currency data);
+        Task<Currency?> GetByCodeOrNullAsync(string code);
+        Task<Currency> GetByCodeOrExceptionAsync(string code);
+        Task<Currency> GetActiveByCodeOrExceptionAsync(string code);
+        Task<IEnumerable<Currency>> GetAllActiveAsync();
+        Task<IEnumerable<Currency>> GetAllInactiveAsync();
     }
 }
