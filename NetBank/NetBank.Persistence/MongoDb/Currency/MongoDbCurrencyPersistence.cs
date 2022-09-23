@@ -1,4 +1,6 @@
-﻿using NetBank.Core.Currency;
+﻿using MongoDB.Driver;
+using NetBank.Core.Currency;
+using NetBank.Core.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,39 +11,51 @@ namespace NetBank.Persistence.MongoDb.Currency
 {
     public class MongoDbCurrencyPersistence : ICurrencyPersistence
     {
-        public void Create(Core.Currency.Currency data)
+        private readonly IMongoCollection<Core.Currency.Currency> collection;
+
+        public MongoDbCurrencyPersistence()
         {
-            throw new NotImplementedException();
+            var mongoDatabase = MongoDbClient.GetInstance();
+            collection = mongoDatabase.GetCollection<Core.Currency.Currency>("currencies");
+        }
+            
+        public async Task CreateAsync(Core.Currency.Currency data)
+        {
+            await collection.InsertOneAsync(data);
         }
 
-        public Core.Currency.Currency GetActiveByCodeOrException(string code)
+        public async Task<Core.Currency.Currency> GetActiveByCodeOrExceptionAsync(string code)
         {
-            throw new NotImplementedException();
+            var result = await collection.Find(x => x.IsActive == true).FirstOrDefaultAsync();
+            if (result == null) throw new Exception(CustomExceptionCodes.CurrencyNotFound);
+            return result;
         }
 
-        public IEnumerable<Core.Currency.Currency> GetAllActive()
+        public async Task<IEnumerable<Core.Currency.Currency>> GetAllActiveAsync()
         {
-            throw new NotImplementedException();
+            return await collection.Find(x => x.IsActive == true).ToListAsync();
         }
 
-        public IEnumerable<Core.Currency.Currency> GetAllInactive()
+        public async Task<IEnumerable<Core.Currency.Currency>> GetAllInactiveAsync()
         {
-            throw new NotImplementedException();
+            return await collection.Find(x => x.IsActive == false).ToListAsync();
         }
 
-        public Core.Currency.Currency GetByCodeOrException(string code)
+        public async Task<Core.Currency.Currency> GetByCodeOrExceptionAsync(string code)
         {
-            throw new NotImplementedException();
+            var result = await collection.Find(x => x.Code == code).FirstOrDefaultAsync();
+            if (result == null) throw new Exception(CustomExceptionCodes.CurrencyNotFound);
+            return result;
         }
 
-        public Core.Currency.Currency? GetByCodeOrNull(string code)
+        public async Task<Core.Currency.Currency?> GetByCodeOrNullAsync(string code)
         {
-            throw new NotImplementedException();
+            return await collection.Find(x => x.Code == code).FirstOrDefaultAsync();
         }
 
-        public void Update(Core.Currency.Currency data)
+        public async Task UpdateAsync(Core.Currency.Currency data)
         {
-            throw new NotImplementedException();
+            await collection.ReplaceOneAsync(data.Id, data);
         }
     }
 }

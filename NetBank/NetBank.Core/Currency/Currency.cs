@@ -8,11 +8,11 @@ namespace NetBank.Core.Currency
 {
     public class Currency
     {
-        public string Id { get; set; } = "";
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Symbol { get; set; } = "";
         public string Code { get; set; } = "";
         public bool IsActive { get; set; }
-        public int CreatedAt { get; set; } = DateTime.Now.Millisecond;
+        public long CreatedAt { get; set; } = DateTimeOffset.Now.ToUnixTimeMilliseconds();
         public List<CurrencyExchangeRate> ExchangeRates { get; set; } = new List<CurrencyExchangeRate>();
     }
 
