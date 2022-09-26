@@ -21,7 +21,7 @@ namespace NetBank.Core.Admin.UseCases.Create
             var user = new Auth()
             {
                 UserName = "admin",
-                Password = "123456",
+                Password = BCrypt.Net.BCrypt.HashPassword("123456"),
                 Role = AuthRoles.Admin
             };
             var existUser = await authPersistence.GetByUserNameOrNullAsync(user.UserName);
