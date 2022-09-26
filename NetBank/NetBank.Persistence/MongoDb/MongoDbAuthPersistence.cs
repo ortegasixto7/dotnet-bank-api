@@ -23,9 +23,9 @@ namespace NetBank.Persistence.MongoDb
             await collection.InsertOneAsync(data);
         }
 
-        public async Task<Auth?> GetByUserNameOrNullAsync(string userName)
+        public async Task<Auth?> GetByUserNameOrNullAsync(string username)
         {
-            return await collection.Find(x => x.UserName == userName).FirstOrDefaultAsync();
+            return await collection.Find(x => x.Username == username).FirstOrDefaultAsync();
         }
 
         public async Task UpdateAsync(Auth data)
