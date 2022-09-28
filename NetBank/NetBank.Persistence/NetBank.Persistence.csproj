@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NetBank.Core\NetBank.Core.csproj" />
+    <ProjectReference Include="..\NetBank.External\NetBank.External.csproj" />
   </ItemGroup>
 
 </Project>

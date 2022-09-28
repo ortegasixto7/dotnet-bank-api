@@ -31,10 +31,14 @@
 *.out
 *.app
 
+.env
+
 NetBank/.vs
 NetBank/NetBank.Api/obj
 NetBank/NetBank.Api/bin
 NetBank/NetBank.Core/obj
 NetBank/NetBank.Core/bin
+NetBank/NetBank.External/obj
+NetBank/NetBank.External/bin
 NetBank/NetBank.Persistence/obj
 NetBank/NetBank.Persistence/bin
