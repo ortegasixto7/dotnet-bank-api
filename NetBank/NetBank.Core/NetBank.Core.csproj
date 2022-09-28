@@ -8,10 +8,18 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.10.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NetBank.External\NetBank.External.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Account\" />
+    <Folder Include="Card\" />
+    <Folder Include="Operation\" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NetBank.Core.User.SignIn;
 using NetBank.Core.Validation;
@@ -8,6 +9,7 @@ namespace NetBank.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IAuthPersistence authPersistence;
@@ -17,12 +19,13 @@ namespace NetBank.Api.Controllers
         }
 
         [HttpPost("sign-in")]
+        [AllowAnonymous]
         public async Task<IActionResult> SignIn(SignInRequest request)
         {
             try
             {
                 var token = await new SignInUseCase(authPersistence).Execute(request);
-                return Ok(new { token });
+                return Ok(new { data = new { token } });
             }
             catch (BadRequestException ex)
             {

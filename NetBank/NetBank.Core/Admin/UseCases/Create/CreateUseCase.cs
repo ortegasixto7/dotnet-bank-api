@@ -20,11 +20,11 @@ namespace NetBank.Core.Admin.UseCases.Create
         {
             var user = new Auth()
             {
-                Username = "admin",
+                UserName = "admin",
                 Password = BCrypt.Net.BCrypt.HashPassword("123456"),
                 Role = AuthRoles.Admin
             };
-            var existUser = await authPersistence.GetByUserNameOrNullAsync(user.Username);
+            var existUser = await authPersistence.GetByUserNameOrNullAsync(user.UserName);
             if (existUser != null) throw new BadRequestException(CustomExceptionCodes.UnavailableUsername);
             await authPersistence.CreateAsync(user);
         }

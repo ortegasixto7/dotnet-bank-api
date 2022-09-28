@@ -10,6 +10,6 @@ namespace NetBank.External.Auth
     {
         Task CreateAsync(Auth data);
         Task UpdateAsync(Auth data);
-        Task<Auth?> GetByUserNameOrNullAsync(string username);
+        Task<Auth?> GetByUserNameOrNullAsync(string userName);
     }
 }
