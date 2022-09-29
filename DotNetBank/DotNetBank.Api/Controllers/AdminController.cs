@@ -19,21 +19,7 @@ namespace DotNetBank.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post()
         {
-            try
-            {
-                await new CreateUseCase(authPersistence).Execute();
-                return Ok();
-            }
-            catch (BadRequestException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return StatusCode(400, new { errorCode = ex.Message });
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return StatusCode(500, new { errorCode = "INTERNAL_ERROR" });
-            }
+            return await new EndpointService().ResponseWrapper(new CreateUseCase(authPersistence).Execute);
         }
     }
 }

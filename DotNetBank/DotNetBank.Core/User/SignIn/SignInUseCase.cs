@@ -45,9 +45,8 @@ namespace DotNetBank.Core.User.SignIn
             };
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            var jwtToken = tokenHandler.WriteToken(token);
-            var stringToken = tokenHandler.WriteToken(token);
-            return stringToken;
+            var tokenResult = tokenHandler.WriteToken(token);
+            return new { token = tokenResult };
         }
     }
 }
