@@ -7,13 +7,13 @@ using DotNetBank.External.Auth;
 
 namespace DotNetBank.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/users")]
     [ApiController]
     [Authorize]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IAuthPersistence authPersistence;
-        public UsersController(IAuthPersistence authPersistence)
+        public UserController(IAuthPersistence authPersistence)
         {
             this.authPersistence = authPersistence;
         }
@@ -21,6 +21,13 @@ namespace DotNetBank.Api.Controllers
         [HttpPost("sign-in")]
         [AllowAnonymous]
         public async Task<IActionResult> SignIn(SignInRequest request)
+        {
+            return await new EndpointService().ResponseWrapper(() => new SignInUseCase(authPersistence).Execute(request));
+        }
+
+        [HttpPost("sign-up/v1")]
+        [AllowAnonymous]
+        public async Task<IActionResult> SignUp(SignInRequest request)
         {
             return await new EndpointService().ResponseWrapper(() => new SignInUseCase(authPersistence).Execute(request));
         }
