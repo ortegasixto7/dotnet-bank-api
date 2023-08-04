@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace DotNetBank.Core.User
 {
-    interface IUserPersistence
+    public interface IUserPersistence
     {
-        Task CreateAsync(User user);
+        Task CreateAsync(User data);
         Task<User?> GetByUserNameOrNullAsync(string userName);
     }
 }

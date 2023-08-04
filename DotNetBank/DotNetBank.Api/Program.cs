@@ -4,6 +4,7 @@ using DotNetBank.Core.Currency;
 using DotNetBank.External.Auth;
 using DotNetBank.Persistence.MongoDb;
 using System.Text;
+using DotNetBank.Core.User;
 
 var builder = WebApplication.CreateBuilder(args);
 DotNetEnv.Env.Load();
@@ -16,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ICurrencyPersistence, MongoDbCurrencyPersistence>();
 builder.Services.AddTransient<IAuthPersistence, MongoDbAuthPersistence>();
+builder.Services.AddTransient<IUserPersistence, MongoDbUserPersistence>();
 
 builder.Services.AddAuthentication(options =>
 {
