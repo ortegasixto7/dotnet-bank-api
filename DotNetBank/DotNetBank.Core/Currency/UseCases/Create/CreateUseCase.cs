@@ -1,9 +1,4 @@
 ﻿using DotNetBank.Core.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotNetBank.Core.Currency.UseCases.Create
 {
@@ -25,7 +20,7 @@ namespace DotNetBank.Core.Currency.UseCases.Create
                 Symbol = request.Symbol
             };
             var existDuplicatedCode = await currencyPersistence.GetByCodeOrNullAsync(request.Code);
-            if (existDuplicatedCode != null) throw new BadRequestException(CustomExceptionCodes.CurrencyCodeAlreadyExist);
+            if (existDuplicatedCode != null) throw new BadRequestException(CustomException.CURRENCY_CODE_ALREADY_EXIST);
             await currencyPersistence.CreateAsync(currency);
         }
     }

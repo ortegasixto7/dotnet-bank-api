@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using DotNetBank.Core.User.SignIn;
-using DotNetBank.Core.Validation;
 using DotNetBank.External.Auth;
+using DotNetBank.Core.User.UseCases.SignIn;
+using DotNetBank.Core.User.UseCases.SignUp;
+using DotNetBank.Core.User;
 
 namespace DotNetBank.Api.Controllers
 {
@@ -13,9 +13,11 @@ namespace DotNetBank.Api.Controllers
     public class UserController : ControllerBase
     {
         private readonly IAuthPersistence authPersistence;
-        public UserController(IAuthPersistence authPersistence)
+        private readonly IUserPersistence userPersistence;
+        public UserController(IAuthPersistence authPersistence, IUserPersistence userPersistence)
         {
             this.authPersistence = authPersistence;
+            this.userPersistence = userPersistence;
         }
 
         [HttpPost("sign-in")]
@@ -27,9 +29,9 @@ namespace DotNetBank.Api.Controllers
 
         [HttpPost("sign-up/v1")]
         [AllowAnonymous]
-        public async Task<IActionResult> SignUp(SignInRequest request)
+        public async Task<IActionResult> SignUp(SignUpRequest request)
         {
-            return await new EndpointService().ResponseWrapper(() => new SignInUseCase(authPersistence).Execute(request));
+            return await new EndpointService().ResponseWrapper(() => new SignUpUseCase(userPersistence).Execute(request));
         }
     }
 }

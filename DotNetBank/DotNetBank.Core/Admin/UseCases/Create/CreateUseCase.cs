@@ -25,7 +25,7 @@ namespace DotNetBank.Core.Admin.UseCases.Create
                 Role = AuthRoles.Admin
             };
             var existUser = await authPersistence.GetByUserNameOrNullAsync(user.UserName);
-            if (existUser != null) throw new BadRequestException(CustomExceptionCodes.UnavailableUsername);
+            if (existUser != null) throw new BadRequestException(CustomException.UNAVAILABLE_USERNAME);
             await authPersistence.CreateAsync(user);
         }
     }

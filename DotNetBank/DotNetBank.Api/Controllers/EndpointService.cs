@@ -15,12 +15,17 @@ namespace DotNetBank.Api.Controllers
             catch (BadRequestException ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(400, new { errorCode = ex.Message });
+                return StatusCode(400, new { error = ex.Message });
+            }
+            catch (NotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(404, new { error = ex.Message });
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(500, new { errorCode = "INTERNAL_ERROR" });
+                return StatusCode(500, new { error = "INTERNAL_ERROR" });
             }
         }
 
@@ -34,12 +39,17 @@ namespace DotNetBank.Api.Controllers
             catch (BadRequestException ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(400, new { errorCode = ex.Message });
+                return StatusCode(400, new { error = ex.Message });
+            }
+            catch (NotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(404, new { error = ex.Message });
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(500, new { errorCode = "INTERNAL_ERROR" });
+                return StatusCode(500, new { error = "INTERNAL_ERROR" });
             }
         }
     }

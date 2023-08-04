@@ -1,9 +1,4 @@
 ﻿using DotNetBank.Core.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotNetBank.Core.Currency.UseCases.Create
 {
@@ -11,8 +6,8 @@ namespace DotNetBank.Core.Currency.UseCases.Create
     {
         public void Validate(CreateRequest request)
         {
-            if (string.IsNullOrEmpty(request.Code)) throw new BadRequestException(CustomExceptionCodes.CodeIsRequired);
-            if (string.IsNullOrEmpty(request.Symbol)) throw new BadRequestException(CustomExceptionCodes.SymbolIsRequired);
+            if (string.IsNullOrEmpty(request.Code)) throw new BadRequestException(CustomException.CODE_IS_REQUIRED);
+            if (string.IsNullOrEmpty(request.Symbol)) throw new BadRequestException(CustomException.SYMBOL_IS_REQUIRED);
         }
     }
 }
