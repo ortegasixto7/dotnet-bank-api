@@ -1,11 +1,6 @@
 ﻿using MongoDB.Driver;
 using DotNetBank.Core.Currency;
 using DotNetBank.Core.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotNetBank.Persistence.MongoDb
 {
@@ -27,7 +22,7 @@ namespace DotNetBank.Persistence.MongoDb
         public async Task<Currency> GetActiveByCodeOrExceptionAsync(string code)
         {
             var result = await collection.Find(x => x.IsActive == true).FirstOrDefaultAsync();
-            if (result == null) throw new Exception(CustomExceptionCodes.CurrencyNotFound);
+            if (result == null) throw new NotFoundException(CustomException.CURRENCY_NOT_FOUND);
             return result;
         }
 
@@ -44,7 +39,7 @@ namespace DotNetBank.Persistence.MongoDb
         public async Task<Currency> GetByCodeOrExceptionAsync(string code)
         {
             var result = await collection.Find(x => x.Code == code).FirstOrDefaultAsync();
-            if (result == null) throw new Exception(CustomExceptionCodes.CurrencyNotFound);
+            if (result == null) throw new NotFoundException(CustomException.CURRENCY_NOT_FOUND);
             return result;
         }
 

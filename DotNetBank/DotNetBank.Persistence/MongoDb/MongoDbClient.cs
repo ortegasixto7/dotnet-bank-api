@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 
 namespace DotNetBank.Persistence.MongoDb
 {
@@ -11,9 +6,7 @@ namespace DotNetBank.Persistence.MongoDb
     {
         private static MongoClient? mongoClient;
 
-        private MongoDbClient()
-        {
-        }
+        private MongoDbClient() { }
 
         public static IMongoDatabase GetInstance()
         {
