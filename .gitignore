@@ -32,13 +32,14 @@
 *.app
 
 .env
+.vs
 
-NetBank/.vs
-NetBank/NetBank.Api/obj
-NetBank/NetBank.Api/bin
-NetBank/NetBank.Core/obj
-NetBank/NetBank.Core/bin
-NetBank/NetBank.External/obj
-NetBank/NetBank.External/bin
-NetBank/NetBank.Persistence/obj
-NetBank/NetBank.Persistence/bin
+DotNetBank/.vs
+DotNetBank/DotNetBank.Api/obj
+DotNetBank/DotNetBank.Api/bin
+DotNetBank/DotNetBank.Core/obj
+DotNetBank/DotNetBank.Core/bin
+DotNetBank/DotNetBank.External/obj
+DotNetBank/DotNetBank.External/bin
+DotNetBank/DotNetBank.Persistence/obj
+DotNetBank/DotNetBank.Persistence/bin

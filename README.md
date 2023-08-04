@@ -1,2 +1,2 @@
-# net-bank-api
+# dotnet-bank-api
 Bank API example app
