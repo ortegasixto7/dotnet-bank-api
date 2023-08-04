@@ -1,15 +1,11 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using DotNetBank.Core.Validation;
 using DotNetBank.External.Auth;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace DotNetBank.Core.User.SignIn
+namespace DotNetBank.Core.User.UseCases.SignIn
 {
     public class SignInUseCase : IUseCaseQuery<SignInRequest>
     {
@@ -23,8 +19,8 @@ namespace DotNetBank.Core.User.SignIn
         {
             new SignInRequestValidation().Validate(request);
             var auth = await authPersistence.GetByUserNameOrNullAsync(request.Username);
-            if(auth == null) throw new BadRequestException(CustomExceptionCodes.InvalidLogin);
-            if(!BCrypt.Net.BCrypt.Verify(request.Password, auth.Password)) throw new BadRequestException(CustomExceptionCodes.InvalidLogin);
+            if (auth == null) throw new BadRequestException(CustomException.INVALID_LOGIN);
+            if (!BCrypt.Net.BCrypt.Verify(request.Password, auth.Password)) throw new BadRequestException(CustomException.INVALID_LOGIN);
             var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
             var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
             var secretKey = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET_KEY") ?? "NO_JWT_SECRET_KEY_SET");
