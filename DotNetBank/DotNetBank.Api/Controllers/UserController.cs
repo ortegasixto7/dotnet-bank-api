@@ -31,7 +31,7 @@ namespace DotNetBank.Api.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> SignUp(SignUpRequest request)
         {
-            return await new EndpointService().ResponseWrapper(() => new SignUpUseCase(userPersistence).Execute(request));
+            return await new EndpointService().ResponseWrapper(() => new SignUpUseCase(userPersistence, authPersistence).Execute(request));
         }
     }
 }

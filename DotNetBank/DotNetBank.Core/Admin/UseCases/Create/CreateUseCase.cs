@@ -1,10 +1,5 @@
 ﻿using DotNetBank.Core.Validation;
 using DotNetBank.External.Auth;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotNetBank.Core.Admin.UseCases.Create
 {
@@ -22,7 +17,7 @@ namespace DotNetBank.Core.Admin.UseCases.Create
             {
                 UserName = "admin",
                 Password = BCrypt.Net.BCrypt.HashPassword("123456"),
-                Role = AuthRoles.Admin
+                Roles = new List<int> { (int) AuthRole.ADMIN },
             };
             var existUser = await authPersistence.GetByUserNameOrNullAsync(user.UserName);
             if (existUser != null) throw new BadRequestException(CustomException.UNAVAILABLE_USERNAME);

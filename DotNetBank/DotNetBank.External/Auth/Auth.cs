@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace DotNetBank.External.Auth
 {
     public class Auth
@@ -12,12 +7,12 @@ namespace DotNetBank.External.Auth
         public string UserName { get; set; } = "";
         public string Password { get; set; } = "";
         public long CreatedAt { get; set; } = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-        public string Role { get; set; } = AuthRoles.User;
+        public List<int> Roles { get; set; } = new List<int>() { (int)AuthRole.USER };
     }
 
-    public abstract class AuthRoles
+    public enum AuthRole
     {
-        public readonly static string Admin = "ADMIN";
-        public readonly static string User = "USER";
+        ADMIN,
+        USER
     }
 }
