@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using DotNetBank.Core.Currency;
-using DotNetBank.External.Auth;
-using DotNetBank.Persistence.MongoDb;
+using DotNetBank.Api.Core.Currency;
+using DotNetBank.Api.External.Auth;
+using DotNetBank.Api.Persistence.MongoDb;
+using DotNetBank.Api.Core.User;
 using System.Text;
-using DotNetBank.Core.User;
 
 var builder = WebApplication.CreateBuilder(args);
 DotNetEnv.Env.Load();

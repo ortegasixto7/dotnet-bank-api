@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using DotNetBank.External.Auth;
-using DotNetBank.Core.User.UseCases.SignIn;
-using DotNetBank.Core.User.UseCases.SignUp;
-using DotNetBank.Core.User;
+using DotNetBank.Api.External.Auth;
+using DotNetBank.Api.Core.User.UseCases.SignIn;
+using DotNetBank.Api.Core.User.UseCases.SignUp;
+using DotNetBank.Api.Core.User;
 
 namespace DotNetBank.Api.Controllers
 {

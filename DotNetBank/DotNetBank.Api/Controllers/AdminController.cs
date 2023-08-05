@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using DotNetBank.Core.Admin.UseCases.Create;
-using DotNetBank.Core.Validation;
-using DotNetBank.External.Auth;
+﻿using Microsoft.AspNetCore.Mvc;
+using DotNetBank.Api.Core.Admin.UseCases.Create;
+using DotNetBank.Api.External.Auth;
 
 namespace DotNetBank.Api.Controllers
 {
