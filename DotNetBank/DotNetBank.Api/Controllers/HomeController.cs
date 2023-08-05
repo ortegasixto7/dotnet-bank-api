@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using DotNetBank.Core.Currency;
+using DotNetBank.Api.Core.Currency;
 
 namespace DotNetBank.Api.Controllers
 {

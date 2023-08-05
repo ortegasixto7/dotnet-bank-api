@@ -1,4 +1,4 @@
-﻿using DotNetBank.Core.Validation;
+﻿using DotNetBank.Api.Core.Validation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetBank.Api.Controllers

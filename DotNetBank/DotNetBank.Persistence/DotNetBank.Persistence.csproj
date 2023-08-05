@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,11 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\DotNetBank.Core\DotNetBank.Core.csproj" />
-    <ProjectReference Include="..\DotNetBank.External\DotNetBank.External.csproj" />
   </ItemGroup>
 
 </Project>
