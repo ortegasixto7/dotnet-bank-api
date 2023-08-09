@@ -5,6 +5,7 @@ using DotNetBank.Api.External.Auth;
 using DotNetBank.Api.Persistence.MongoDb;
 using DotNetBank.Api.Core.User;
 using System.Text;
+using DotNetBank.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 DotNetEnv.Env.Load();
@@ -43,6 +44,7 @@ builder.Services.AddAuthorization();
 var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
 
 // Configure the HTTP request pipeline.
