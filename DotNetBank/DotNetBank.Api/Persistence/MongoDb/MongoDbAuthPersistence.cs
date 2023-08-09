@@ -15,6 +15,7 @@ namespace DotNetBank.Api.Persistence.MongoDb
 
         public async Task CreateAsync(Auth data)
         {
+            data.Password = BCrypt.Net.BCrypt.HashPassword(data.Password);
             await collection.InsertOneAsync(data);
         }
 

@@ -24,7 +24,7 @@ namespace DotNetBank.Api.Core.User.UseCases.SignUp
             Auth auth = new()
             {
                 UserName = request.UserName,
-                Password = BCrypt.Net.BCrypt.HashPassword(request.Password),
+                Password = request.Password,
             };
 
             User user = new()
