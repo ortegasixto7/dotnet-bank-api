@@ -20,18 +20,20 @@ namespace DotNetBank.Api.Controllers
             this.userPersistence = userPersistence;
         }
 
-        [HttpPost("sign-in")]
+        [HttpPost("sign-in/v1")]
         [AllowAnonymous]
         public async Task<IActionResult> SignIn(SignInRequest request)
         {
-            return await new EndpointService().ResponseWrapper(() => new SignInUseCase(authPersistence).Execute(request));
+            await new SignInUseCase(authPersistence).Execute(request);
+            return Ok();
         }
 
         [HttpPost("sign-up/v1")]
         [AllowAnonymous]
         public async Task<IActionResult> SignUp(SignUpRequest request)
         {
-            return await new EndpointService().ResponseWrapper(() => new SignUpUseCase(userPersistence, authPersistence).Execute(request));
+            await new SignUpUseCase(userPersistence, authPersistence).Execute(request);
+            return Ok();
         }
     }
 }

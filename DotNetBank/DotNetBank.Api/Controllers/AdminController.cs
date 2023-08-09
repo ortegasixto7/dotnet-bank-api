@@ -4,7 +4,7 @@ using DotNetBank.Api.External.Auth;
 
 namespace DotNetBank.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/admin")]
     [ApiController]
     public class AdminController : ControllerBase
     {
@@ -17,7 +17,8 @@ namespace DotNetBank.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post()
         {
-            return await new EndpointService().ResponseWrapper(new CreateUseCase(authPersistence).Execute);
+            await new CreateUseCase(authPersistence).Execute();
+            return Ok();
         }
     }
 }
