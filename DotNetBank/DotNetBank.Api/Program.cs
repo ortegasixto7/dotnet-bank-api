@@ -6,6 +6,8 @@ using DotNetBank.Api.Persistence.MongoDb;
 using DotNetBank.Api.Core.User;
 using System.Text;
 using DotNetBank.Api.Middlewares;
+using DotNetBank.Api.GraphQL;
+using HotChocolate;
 
 var builder = WebApplication.CreateBuilder(args);
 DotNetEnv.Env.Load();
@@ -19,6 +21,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ICurrencyPersistence, MongoDbCurrencyPersistence>();
 builder.Services.AddTransient<IAuthPersistence, MongoDbAuthPersistence>();
 builder.Services.AddTransient<IUserPersistence, MongoDbUserPersistence>();
+
+// GraphQL 
+builder.Services.AddGraphQLServer().AddQueryType<Query>().AddMutationType<Mutation>();
+builder.Services.AddErrorFilter<GraphQLErrorFilter>();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -45,6 +51,7 @@ var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+app.MapGraphQL();
 
 
 // Configure the HTTP request pipeline.
